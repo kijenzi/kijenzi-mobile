@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "855300604278",
+    "firebase_url": "https://hese-3d-printing.firebaseio.com",
+    "project_id": "hese-3d-printing",
+    "storage_bucket": "hese-3d-printing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855300604278:android:c08a245e53b6665c",
+        "android_client_info": {
+          "package_name": "com.example.cmgoe.hese3dprinting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855300604278-l1t9vak3t66ggnk3998eanf6bl082cug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cmgoe.hese3dprinting",
+            "certificate_hash": "9d190ae86894dd353a07fde9a1d72abcfa4da79c"
+          }
+        },
+        {
+          "client_id": "855300604278-d7os4ghiacuqoq5ikavsa3ruine86p17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYo_bVMveAX1oTrG7g4IhQnbqGnO0pU90"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855300604278-d7os4ghiacuqoq5ikavsa3ruine86p17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855300604278:android:5def2f2bc5de85c2",
+        "android_client_info": {
+          "package_name": "com.example.cmgoe.medtechkijenzi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855300604278-q6s2jb5p0p34lpvr20e8t539vismae9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cmgoe.medtechkijenzi",
+            "certificate_hash": "9d190ae86894dd353a07fde9a1d72abcfa4da79c"
+          }
+        },
+        {
+          "client_id": "855300604278-d7os4ghiacuqoq5ikavsa3ruine86p17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYo_bVMveAX1oTrG7g4IhQnbqGnO0pU90"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855300604278-d7os4ghiacuqoq5ikavsa3ruine86p17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
