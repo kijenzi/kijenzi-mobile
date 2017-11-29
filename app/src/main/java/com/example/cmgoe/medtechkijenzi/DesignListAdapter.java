@@ -67,8 +67,8 @@ public class DesignListAdapter extends BaseAdapter {
         Design design = (Design) getItem(position);
 
         titleTextView.setText(design.title);
-        subtitleTextView.setText(design.description);
-        detailTextView.setText(design.label);
+        subtitleTextView.setText(design.desc);
+        detailTextView.setText(design.url);
 
         //Picasso.with(mContext).load(design.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);
 

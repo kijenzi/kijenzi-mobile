@@ -57,7 +57,7 @@ public class DesignDetailActivity extends AppCompatActivity {
 
         Design currDesign = (Design)getIntent().getSerializableExtra("SelectedDesign");
         posText.setText(currDesign.title);
-        localFile = fireb.getFile("/"+currDesign.title);
+        localFile = fireb.getFile("/"+currDesign.url);
 
         System.out.println(localFile.exists() + "does the file exist");
 

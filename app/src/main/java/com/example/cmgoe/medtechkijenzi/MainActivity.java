@@ -69,17 +69,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
-    public void setList(ArrayList<String> files){
+    public void setList(ArrayList<Design> files){
         System.out.println(files.toString());
-        designs = new ArrayList<Design>();
-        for(int i = 0; i < files.size(); i++){
-            designs.add(new Design(files.get(i),"This is a short description for item "+i,Integer.toString(i)));
-            System.out.println(files.get(i) + "inside setList");
-        }
+//        designs = new ArrayList<Design>();
+//        for(int i = 0; i < files.size(); i++){
+//            designs.add(new Design(files.get(i),"This is a short description for item "+i,Integer.toString(i)));
+//            System.out.println(files.get(i) + "inside setList");
+//        }
+        designs = files;
 
         System.out.println("called setList");
 
-        adapter = new DesignListAdapter(this, designs);
+        adapter = new DesignListAdapter(this, files);
         System.out.println(mListView);
         System.out.println(adapter);
         mListView.setAdapter(adapter);

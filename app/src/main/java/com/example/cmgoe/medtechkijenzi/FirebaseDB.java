@@ -20,23 +20,22 @@ import javax.security.auth.callback.Callback;
  */
 
 public final class FirebaseDB {
-    private static ArrayList<String> files;
+    private static ArrayList<Design> files;
     private static DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     public FirebaseDB(){
         read();
     }
 
-    public static ArrayList<String> read(){
+    public static ArrayList<Design> read(){
         DatabaseReference companyRef = mDatabase.child("PrintFiles");
         companyRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
-                ArrayList<String> readFile = new ArrayList<>();
+                ArrayList<Design> readFile = new ArrayList<>();
                 for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
-                    System.out.println("reading child companys");
-                    String file = noteDataSnapshot.getValue(String.class);
-                    System.out.println(file);
+                    Design file = noteDataSnapshot.getValue(Design.class);
+                    System.out.println(file.desc);
                     readFile.add(file);
                 }
                 System.out.println(readFile.toString() + "readFile toString");
@@ -50,10 +49,10 @@ public final class FirebaseDB {
         companyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
-                ArrayList<String> readFiles = new ArrayList<>();
+                ArrayList<Design> readFiles = new ArrayList<>();
                 for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
                     System.out.println("reading child companys");
-                    String file = noteDataSnapshot.getValue(String.class);
+                    Design file = noteDataSnapshot.getValue(Design.class);
                     readFiles.add(file);
                 }
                 setFiles(readFiles);
@@ -67,11 +66,11 @@ public final class FirebaseDB {
         return getFiles();
     }
 
-    public static ArrayList<String> getFiles() {
+    public static ArrayList<Design> getFiles() {
         return files;
     }
 
-    public static void setFiles(ArrayList<String> files) {
+    public static void setFiles(ArrayList<Design> files) {
         FirebaseDB.files = files;
     }
 }

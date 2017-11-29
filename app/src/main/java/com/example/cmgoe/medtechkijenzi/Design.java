@@ -8,12 +8,16 @@ import java.io.Serializable;
 
 public class Design implements Serializable {
     String title;
-    String description;
-    String label;
+    String desc;
+    String url;
 
-    public Design(String title, String description, String label){
+    public Design () {
+
+    }
+
+    public Design(String title, String desc, String url){
         this.title = title;
-        this.description = description;
-        this.label = label;
+        this.desc = desc;
+        this.url = url;
     }
 }
