@@ -1,29 +1,190 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/top_rel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+
+        <LinearLayout
+            android:id="@+id/top_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/logo_picture"
+                android:layout_width="175dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="top"
+                android:src="@drawable/full_logo" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingLeft="16dp"
+                android:paddingTop="60dp"
+                android:text="Microscope Knob"
+                android:id="@+id/detail-title"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_mid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_textview"/>
+        android:layout_below="@id/top_rel">
 
-    <Button
-        android:id="@+id/connect_button"
-        android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/middle_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="File Name:"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="microscope_knob.stl"
+                android:id="@+id/detail-filename"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sub-middle_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/middle_container"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="File Type:"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:id="@+id/detail-filetype"
+                android:text="STL"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sub-middle-2_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sub-middle_container"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Description:"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/detail-description"
+                android:text="A drafted repair for a microscope knob used to detect Malaria in blood cells."
+                android:layout_marginBottom="20dp"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Select Device"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_below="@id/rel_mid">
 
-        />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:paddingTop="16dp">
 
-    <Button
-        android:id="@+id/print_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Print Design"
-        android:layout_alignParentBottom="true"
-        />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Select Device"
+                android:id="@+id/connect_button"
+                android:layout_weight="1"/>
 
-</LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Print Design"
+                android:id="@+id/print_button"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/my_textview"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/connect_button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Select Device"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentRight="true"-->
+
+    <!--/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/print_button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Print Design"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--/>-->
+
+    <!--</LinearLayout>-->
+
