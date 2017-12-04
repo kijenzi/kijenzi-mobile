@@ -35,7 +35,6 @@
                 android:layout_weight="2"
                 android:paddingLeft="16dp"
                 android:paddingTop="60dp"
-                android:text="Microscope Knob"
                 android:id="@+id/detail-title"
                 android:textSize="20sp" />
 
@@ -67,7 +66,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="microscope_knob.stl"
                 android:id="@+id/detail-filename"
                 android:textSize="18sp"/>
 
@@ -93,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:id="@+id/detail-filetype"
-                android:text="STL"
                 android:textSize="18sp"/>
 
         </LinearLayout>

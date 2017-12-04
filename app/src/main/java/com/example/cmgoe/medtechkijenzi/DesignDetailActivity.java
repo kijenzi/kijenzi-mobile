@@ -31,10 +31,11 @@ import java.util.Set;
  */
 
 public class DesignDetailActivity extends AppCompatActivity {
-    private TextView posText;
+    private TextView fileType, titleText, descText, urlText;
     private Button connectButton;
     private Button printButton;
     private FirebaseFiles fireb;
+    private boolean selectionMade;
     private File localFile;
     BluetoothDevice selectedDevice;
     BluetoothThread connection;
@@ -46,6 +47,7 @@ public class DesignDetailActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         deviceList = new ArrayList<BluetoothDevice>();
         fireb = new FirebaseFiles();
+        selectionMade = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listitem);
         this.setUpBluetooth();
@@ -53,10 +55,21 @@ public class DesignDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int position = intent.getIntExtra("position", 0);
 
-        posText = (TextView) findViewById(R.id.my_textview);
+        urlText = (TextView) findViewById(R.id.detail_filename);
+        titleText = (TextView) findViewById(R.id.detail_title);
+        descText = (TextView) findViewById(R.id.detail_description);
+        fileType = (TextView) findViewById(R.id.detail_filetype);
 
         Design currDesign = (Design)getIntent().getSerializableExtra("SelectedDesign");
-        posText.setText(currDesign.title);
+        urlText.setText(currDesign.url);
+        titleText.setText(currDesign.title);
+        descText.setText(currDesign.desc);
+        try{
+            fileType.setText(currDesign.url.split(".")[1]);
+        } catch (Exception e){
+            fileType.setText("unknown");
+        }
+
         localFile = fireb.getFile("/"+currDesign.url);
 
         System.out.println(localFile.exists() + "does the file exist");
@@ -98,6 +111,7 @@ public class DesignDetailActivity extends AppCompatActivity {
 
     private void selectDevice(){
 
+
         //Finds list of connected devices, adds devices to ArrayList
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if(pairedDevices.size()> 0){
@@ -120,19 +134,25 @@ public class DesignDetailActivity extends AppCompatActivity {
             selectedDevice = deviceList.get(position);
 //            ConnectThread mConnectThread = new ConnectThread(selectedDevice);
 //            mConnectThread.start();
-            connection = new BluetoothThread(selectedDevice, localFile);
-            connection.start();
-            System.out.println(localFile.exists() + "does it exist");
+            //System.out.println(localFile.exists() + "does it exist");
 
             dlg.hide();
 
         }});
         dlg.setContentView(listView);
         dlg.show();
+        selectionMade = true;
     }
 
     private void print() {
-        System.out.println("Printing...");
-        connection.sendFile(localFile);
+        if(selectionMade){
+            connection = new BluetoothThread(selectedDevice, localFile);
+            connection.start();
+            System.out.println("Printing...");
+            //connection.sendFile(localFile); //eventually this will be used instead of immediately sending
+        } else {
+            Toast.makeText(getApplicationContext(), "You must select a Bluetooth device before printing!", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
