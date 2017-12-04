@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="15dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/slateGray"
         android:text="Submit"
         android:textColor="@android:color/white" />
 
