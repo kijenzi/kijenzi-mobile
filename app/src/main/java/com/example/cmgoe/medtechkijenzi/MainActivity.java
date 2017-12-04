@@ -6,11 +6,13 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,9 +32,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Design> designs;
     File localFile;
     DesignListAdapter adapter;
+    ImageView requestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Creates a custom AppBar to include a plus button for adding a request
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         fireb = new FirebaseFiles();
         System.out.println("back in main");
 
@@ -45,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        requestButton = (ImageView) findViewById(R.id.add_request_button);
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RequestBrowser.class);
+                startActivity(intent);
+            }
+        });
 
 //        ArrayList<Design> designs = new ArrayList<Design>();
 //        for(int i = 0; i < 50; i++){
