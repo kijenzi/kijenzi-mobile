@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#A1FFB5</color>
+    <color name="colorPrimaryDark">#B23B4A</color>
+    <color name="colorAccent">#4DB263</color>
+    <color name="seaGreen">#458252</color>
+    <color name="darkSlateGray">#0E0E0F</color>
+    <color name="gainsboro">#DDDDDD</color>
+    <color name="lightSlateGray">#ABACAC</color>
+    <color name="slateGray">#7F8283</color>
 </resources>
