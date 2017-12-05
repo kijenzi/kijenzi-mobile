@@ -31,11 +31,11 @@ public class FirebaseFiles {
 
     }
 
-    public File getFile(String path){
+    public File getFile(String path, String suffix){
         File file = null;
         StorageReference model = ref.child(path);
         try {
-            file = File.createTempFile("design-", ".gcode");
+            file = File.createTempFile("design-", suffix);
             model.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {

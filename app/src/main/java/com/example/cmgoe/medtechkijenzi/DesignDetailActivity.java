@@ -70,7 +70,7 @@ public class DesignDetailActivity extends AppCompatActivity {
             fileType.setText("unknown");
         }
 
-        localFile = fireb.getFile("/"+currDesign.url);
+        localFile = fireb.getFile("/"+currDesign.url, ".gcode");
 
         System.out.println(localFile.exists() + "does the file exist");
 

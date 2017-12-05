@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //localFile = fireb.getFile("/microscope knob.gcode");
         //localFile = fireb.getFile("/motortest.gcode");
-        localFile = fireb.getFile("/UltimakerRobot_support.gcode");
+        localFile = fireb.getFile("/UltimakerRobot_support.gcode", ".gcode");
         //localFile = fireb.getFile("/m119.gcode");
         //localFile = fireb.getFile("/spatula.gcode");
         //localFile = fireb.getFile("/g28.gcode");
@@ -104,8 +104,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         System.out.println("called setList");
 
         adapter = new DesignListAdapter(this, files);
-        System.out.println(mListView);
-        System.out.println(adapter);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }

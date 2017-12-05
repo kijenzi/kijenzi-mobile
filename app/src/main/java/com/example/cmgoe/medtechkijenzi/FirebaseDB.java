@@ -53,7 +53,11 @@ public final class FirebaseDB {
                 for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
                     System.out.println("reading child companys");
                     Design file = noteDataSnapshot.getValue(Design.class);
-                    readFiles.add(file);
+                    if(file.url.contains(".gcode") || file.url.contains(".stl")){
+                        System.out.println("file contains gcode or stl");
+                        readFiles.add(file);
+                    }
+
                 }
                 setFiles(readFiles);
             }

@@ -1,6 +1,10 @@
 package com.example.cmgoe.medtechkijenzi;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +23,9 @@ import java.util.ArrayList;
 
 public class DesignListAdapter extends BaseAdapter {
     private Context mContext;
+    private FirebaseFiles fireb;
+    private File imageThumbnail;
+    ImageView thumbnailImageView;
     private LayoutInflater mInflater;
     private ArrayList<Design> mDataSource;
 
@@ -23,6 +33,7 @@ public class DesignListAdapter extends BaseAdapter {
         mContext = context;
         mDataSource = items;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        fireb = new FirebaseFiles();
     }
 
     @Override
@@ -61,7 +72,7 @@ public class DesignListAdapter extends BaseAdapter {
                 (TextView) rowView.findViewById(R.id.design_list_detail);
 
         // Get thumbnail element
-        ImageView thumbnailImageView =
+        thumbnailImageView =
                 (ImageView) rowView.findViewById(R.id.design_list_thumbnail);
 
         Design design = (Design) getItem(position);
@@ -70,8 +81,35 @@ public class DesignListAdapter extends BaseAdapter {
         subtitleTextView.setText(design.desc);
         detailTextView.setText(design.url);
 
+        imageThumbnail = fireb.getFile(getImageUrl(design.url), ".jpg");
+        System.out.println(getImageUrl(design.url) + " here is the image url");
+
+        if(imageThumbnail.exists()){
+            System.out.println("image thumbnail exists");
+
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //updatePicture();
+            }
+        }, 5000);
+        Picasso.with(mContext).load(imageThumbnail).into(thumbnailImageView);
+        //.placeholder(R.mipmap.ic_launcher)
+        //thumbnailImageView
+
         //Picasso.with(mContext).load(design.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);
 
         return rowView;
+    }
+
+    private String getImageUrl(String designUrl){
+        return designUrl.split("\\.")[0] + ".jpg";
+    }
+
+    public void updatePicture () {
+        System.out.println("update picture");
+        Picasso.with(mContext).load(imageThumbnail).into(thumbnailImageView);
     }
 }
