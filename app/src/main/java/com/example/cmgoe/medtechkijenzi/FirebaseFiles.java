@@ -57,4 +57,9 @@ public class FirebaseFiles {
         return file;
     }
 
+    public StorageReference getStorageRef(String path){
+        StorageReference refFromPath = ref.child(path);
+        return refFromPath;
+    }
+
 }
