@@ -29,32 +29,31 @@ public final class FirebaseDB {
 
     public static ArrayList<Design> read(){
         DatabaseReference companyRef = mDatabase.child("PrintFiles");
-        companyRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                ArrayList<Design> readFile = new ArrayList<>();
-                for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
-                    Design file = noteDataSnapshot.getValue(Design.class);
-                    System.out.println(file.desc);
-                    readFile.add(file);
-                }
-                System.out.println(readFile.toString() + "readFile toString");
-                setFiles(readFile);
-            }
-            @Override
-            public void onCancelled(DatabaseError error){
-                System.out.println("there was a db error");
-            }
-        });
+//        companyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot){
+//                ArrayList<Design> readFile = new ArrayList<>();
+//                for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
+//                    Design file = noteDataSnapshot.getValue(Design.class);
+//                    System.out.println(file.url + " file output");
+//                    readFile.add(file);
+//                }
+//                System.out.println(readFile.toString() + "readFile toString");
+//                setFiles(readFile);
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError error){
+//                System.out.println("there was a db error");
+//            }
+//        });
         companyRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
                 ArrayList<Design> readFiles = new ArrayList<>();
                 for(DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
-                    System.out.println("reading child companys");
                     Design file = noteDataSnapshot.getValue(Design.class);
                     if(file.url.contains(".gcode") || file.url.contains(".stl")){
-                        System.out.println("file contains gcode or stl");
+                        System.out.println("Found printable file");
                         readFiles.add(file);
                     }
 

@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 
 public class Design implements Serializable {
-    String title;
-    String desc;
-    String url;
+    public String title;
+    public String desc;
+    public String url;
 
     public Design () {
 
