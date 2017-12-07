@@ -86,27 +86,8 @@ public class DesignListAdapter extends BaseAdapter {
 
         GlideApp.with(mContext)
                 .load(ref)
+                .placeholder(R.drawable.placeholder)
                 .into(thumbnailImageView);
-
-//        imageThumbnail = fireb.getFile(getImageUrl(design.url), ".jpg");
-//        System.out.println(getImageUrl(design.url) + " here is the image url");
-//
-//        if(imageThumbnail.exists()){
-//            System.out.println("image thumbnail exists");
-//
-//        }
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                //updatePicture();
-//            }
-//        }, 5000);
-//        Picasso.with(mContext).load(imageThumbnail).into(thumbnailImageView);
-//        //.placeholder(R.mipmap.ic_launcher)
-//        //thumbnailImageView
-//
-//        //Picasso.with(mContext).load(design.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);
 
         return rowView;
     }

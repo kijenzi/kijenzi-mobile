@@ -16,11 +16,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cmgoe.medtechkijenzi.R;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class DesignDetailActivity extends AppCompatActivity {
     private TextView fileType, titleText, descText, urlText;
     private Button connectButton;
     private Button printButton;
+    private ImageView designImage;
     private FirebaseFiles fireb;
     private boolean selectionMade;
     private File localFile;
@@ -65,7 +68,7 @@ public class DesignDetailActivity extends AppCompatActivity {
         titleText.setText(currDesign.title);
         descText.setText(currDesign.desc);
         try{
-            fileType.setText(currDesign.url.split(".")[1]);
+            fileType.setText(currDesign.url.split("\\.")[1]);
         } catch (Exception e){
             fileType.setText("unknown");
         }
@@ -90,6 +93,15 @@ public class DesignDetailActivity extends AppCompatActivity {
                 print();
             }
         });
+
+        designImage = (ImageView) findViewById(R.id.logo_picture);
+
+        StorageReference ref = fireb.getStorageRef(getImageUrl(currDesign.url));
+
+        GlideApp.with(this)
+                .load(ref)
+                .placeholder(R.drawable.full_logo)
+                .into(designImage);
 
     }
 
@@ -149,10 +161,15 @@ public class DesignDetailActivity extends AppCompatActivity {
             connection = new BluetoothThread(selectedDevice, localFile);
             connection.start();
             System.out.println("Printing...");
+            Toast.makeText(getApplicationContext(), "Printing design...", Toast.LENGTH_LONG).show();
             //connection.sendFile(localFile); //eventually this will be used instead of immediately sending
         } else {
             Toast.makeText(getApplicationContext(), "You must select a Bluetooth device before printing!", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private String getImageUrl(String designUrl){
+        return designUrl.split("\\.")[0] + ".jpg";
     }
 }

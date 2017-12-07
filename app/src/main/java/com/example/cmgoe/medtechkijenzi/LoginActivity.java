@@ -30,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    //private ImageView fullLogo;
     private View mProgressView;
     private View mLoginFormView;
     private Button submitButton;
