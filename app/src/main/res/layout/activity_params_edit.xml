@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,47 +10,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.cmgoe.medtechkijenzi.ParamsEditActivity">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tab_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--android:elevation="6dp"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/tab_layout"/>
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/pager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_below="@id/tab_layout"/>-->
 
     <LinearLayout
         android:id="@+id/rel_mid"
         android:orientation="vertical"
-
-        android:layout_gravity="center_vertical"
         android:layout_width= "match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_panel"
+        android:layout_height="match_parent"
         android:paddingTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:layout_above="@id/middle_container">
-
             <ImageView
                 android:id="@+id/dimensions_picture"
-                android:layout_width="175dp"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginBottom="50dp"
-                android:layout_gravity="top"/>
-
-        </LinearLayout>
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="top"
+                android:layout_above="@id/middle_container"/>
 
         <LinearLayout
             android:id="@+id/middle_container"
@@ -58,6 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="A: Hole Depth (mm):"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
@@ -84,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="B: Hole Diameter (mm):"
+                android:gravity="center"
                 android:textStyle="bold"
                 android:paddingTop="16dp"
                 android:textSize="18sp"/>
@@ -109,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="C: Rack Width (mm):"
+                android:gravity="center"
                 android:textStyle="bold"
                 android:paddingTop="16dp"
                 android:textSize="18sp"/>
@@ -118,7 +115,6 @@
                 android:layout_weight="1"
                 android:id="@+id/rack_width"
                 android:text=""
-                android:layout_marginBottom="20dp"
                 android:textSize="18sp"/>
 
         </LinearLayout>
@@ -133,6 +129,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:text="D: Rack Length (mm):"
                 android:textStyle="bold"
@@ -144,7 +141,6 @@
                 android:layout_weight="1"
                 android:text=""
                 android:id="@+id/rack_length"
-                android:layout_marginBottom="20dp"
                 android:textSize="18sp"/>
 
         </LinearLayout>
@@ -152,7 +148,7 @@
         <LinearLayout
             android:id="@+id/sub-middle-4_container"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:layout_below="@id/sub-middle-3_container"
             android:weightSum="2">
 
@@ -160,18 +156,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cone Height (mm):"
-                android:textStyle="bold"
                 android:paddingTop="16dp"
-                android:textSize="18sp"/>
+                android:text="Cone Height (mm):"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/cone_height"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/cone_height"
                 android:text=""
-                android:layout_marginBottom="20dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -187,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cone Base:"
+                android:gravity="center"
                 android:textStyle="bold"
                 android:paddingTop="16dp"
                 android:textSize="18sp"/>
@@ -198,26 +196,20 @@
                 android:checked="true"
                 android:textOn="Large"
                 android:textOff="Small"
-                android:layout_marginBottom="20dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/buttonsPanel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rel_mid">
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:weightSum="2"
+            android:gravity="bottom"
             android:paddingTop="100dp">
 
             <Button
                 android:layout_width="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
                 android:id="@+id/cancel_button"
                 android:layout_height="wrap_content"
                 android:text="Cancel"
@@ -227,13 +219,18 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
                 android:id="@+id/generate_button"
                 android:text="Generate Printable File"
                 android:layout_weight="1"
                 android:background="@drawable/button_selector" />
 
         </LinearLayout>
+    </LinearLayout>
 
-    </RelativeLayout>
+
+
 
 </RelativeLayout>
+</ScrollView>
