@@ -82,12 +82,20 @@ public class DesignListAdapter extends BaseAdapter {
         subtitleTextView.setText(design.desc);
         detailTextView.setText(design.url);
 
-        StorageReference ref = fireb.getStorageRef(getImageUrl(design.url));
+        if(design.url.contains(".stl")){
+            StorageReference ref = fireb.getStorageRef(getImageUrl(design.url));
 
-        GlideApp.with(mContext)
-                .load(ref)
-                .placeholder(R.drawable.placeholder)
-                .into(thumbnailImageView);
+            GlideApp.with(mContext)
+                    .load(ref)
+                    .placeholder(R.drawable.placeholder)
+                    .into(thumbnailImageView);
+        } else {
+            GlideApp.with(mContext)
+                    .load(R.drawable.placeholder)
+                    .into(thumbnailImageView);
+        }
+
+
 
         return rowView;
     }

@@ -6,18 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.firebase.storage.StorageReference;
 
 public class ParamsEditActivity extends AppCompatActivity {
     private Button generateButton;
     private Button cancelButton;
     private EditText holeDepth, holeDiameter,rackWidth,rackLength,coneHeight;
+    private ImageView dimensionsImage;
+    private FirebaseFiles fireb = new FirebaseFiles();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_params_edit);
 
+        Design currDesign = (Design)getIntent().getSerializableExtra("SelectedDesign");
 
         generateButton = (Button) findViewById(R.id.generate_button);
         generateButton.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +46,23 @@ public class ParamsEditActivity extends AppCompatActivity {
         rackWidth = (EditText) findViewById(R.id.rack_width);
         rackLength = (EditText) findViewById(R.id.rack_length);
         coneHeight = (EditText) findViewById(R.id.cone_height);
+
+        dimensionsImage = (ImageView) findViewById(R.id.dimensions_picture);
+
+        if(currDesign.url.contains("Vial_Holder")){
+            StorageReference ref = fireb.getStorageRef(getImageUrl("Vial_Holder.stl"));
+
+            GlideApp.with(this)
+                    .load(ref)
+                    .placeholder(R.drawable.placeholder)
+                    .into(dimensionsImage);
+        } else {
+            GlideApp.with(this)
+                    .load(R.drawable.placeholder)
+                    .into(dimensionsImage);
+        }
+
+
     }
 
     private void generateFile(){
@@ -64,5 +87,9 @@ public class ParamsEditActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private String getImageUrl(String designUrl){
+        return designUrl.split("\\.")[0] + "-dimensioned.jpg";
     }
 }
