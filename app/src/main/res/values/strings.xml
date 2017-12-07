@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Medtech Kijenzi</string>
 
+    <string name="linkToFB"><a href="https://www.facebook.com/medtechkijenzi/?ref=br_rs">Visit Medtech Kijenzi on Facebook</a></string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

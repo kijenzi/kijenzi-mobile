@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@id/description"
-            android:text="Visit Medtech Kijenzi on Facebook"
+            android:text="@string/linkToFB"
             android:textAlignment="center"
             android:textColor="#0d3faa" />
 
@@ -113,8 +113,6 @@
             android:layout_height="170dp"
             android:layout_below="@id/logo_picture"
             android:textAlignment="center"
-            android:linksClickable="true"
-            android:autoLink="web"
             android:text="Medtech Kijenzi is building compact and versatile 3D printers to accommodate industries in need and provide a modular solution to production and product repair."
 
             android:textSize="18sp" />
