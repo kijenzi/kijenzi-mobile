@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.storage.StorageMetadata;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Button printButton;
     private FirebaseFiles fireb;
     private ListView mListView;
+    private TextView devButton;
     ArrayList<Design> designs;
     File localFile;
     DesignListAdapter adapter;
@@ -59,6 +61,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RequestBrowser.class);
+                startActivity(intent);
+            }
+        });
+
+        devButton = (TextView) findViewById(R.id.dev_button);
+        devButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DeveloperActivity.class);
                 startActivity(intent);
             }
         });

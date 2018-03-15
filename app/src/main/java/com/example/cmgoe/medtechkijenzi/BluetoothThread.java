@@ -6,6 +6,7 @@ package com.example.cmgoe.medtechkijenzi;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,14 +25,17 @@ import java.util.UUID;
 public class BluetoothThread extends Thread implements Serializable {
     private final BluetoothDevice mmDevice;
     private final BluetoothSocket mmSocket;
+    private String command;
+    private boolean isDev = false;
     private InputStream in = null;
     private File localFile;
     private OutputStream out = null;
     private final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
     //private final UUID MY_UUID = UUID.fromString("8c372ea7-7a0f-4380-b133-17995eebff4b");
 
-    public BluetoothThread(BluetoothDevice device, File localFile) {
+    public BluetoothThread(BluetoothDevice device, File localFile, boolean theIsDev) {
         mmDevice = device;
+        isDev = theIsDev;
         this.localFile = localFile;
         BluetoothSocket tmp = null;
         try {
@@ -75,29 +79,26 @@ public class BluetoothThread extends Thread implements Serializable {
         in = tempIn;
         out = tempOut;
 
-        sendFile(localFile);
-
-        byte[] buffer = new byte[1024];
-        int begin = 0;
-        int bytes = 0;
-        while (true) {
-            try {
-                bytes += in.read(buffer, bytes, buffer.length - bytes);
-                for(int i = begin; i < bytes; i++) {
-                    if(buffer[i] == "#".getBytes()[0]) {
-                        begin = i + 1;
-                        if(i == bytes - 1) {
-                            bytes = 0;
-                            begin = 0;
-                        }
-                    }
-                }
-                System.out.println(bytes + " || response");
-            } catch (IOException e) {
-                break;
-            }
+        if(isDev){
+            sendGCode();
+        } else {
+            sendFile(localFile);
         }
+    }
 
+    public void setCommand (String command) {
+        this.command = command;
+    }
+
+    public void sendGCode () {
+        try {
+            command = command + "\n";
+            System.out.println(command.getBytes(StandardCharsets.US_ASCII));
+            out.write(command.getBytes(StandardCharsets.US_ASCII));
+            System.out.println(in.read() + " || response");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void cancel() {
@@ -111,16 +112,25 @@ public class BluetoothThread extends Thread implements Serializable {
 
     public void sendFile(File fileToSend){
         ArrayList<String> lines = FileToByteConverter.convertToLines(fileToSend);
+        byte[] command = {};
         int i = 0;
-        for(String line : lines){
 
+        //inital print commands here
+        //G0 Z0
+        command = "G28\n".getBytes(StandardCharsets.US_ASCII);
+        try{
+            out.write(command);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        for(String line : lines){
             System.out.println(line + " here is a line");
-            System.out.println(i);
-            //line = line.replaceAll
 
             try{
                 line = line + "\n";
                 out.write(line.getBytes(StandardCharsets.US_ASCII));
+                System.out.println(in.read() + " || response");
                 out.flush();
             } catch (Exception e){
                 e.printStackTrace();
@@ -129,15 +139,13 @@ public class BluetoothThread extends Thread implements Serializable {
             i++;
         }
 
-        byte[] command = {};
-        try {
-            command = "G28\n".getBytes(StandardCharsets.US_ASCII);
-            //out.write(command);
-        } catch (Exception e){
 
-        }
-
-
+//        try {
+//            command = "G28\n".getBytes(StandardCharsets.US_ASCII);
+//            //out.write(command);
+//        } catch (Exception e){
+//
+//        }
 //        //byte[] convertedFile = FileToByteConverter.convertFile(fileToSend);
 //        byte[] command = {};
 //        try{

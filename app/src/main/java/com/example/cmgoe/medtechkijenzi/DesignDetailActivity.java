@@ -158,7 +158,7 @@ public class DesignDetailActivity extends AppCompatActivity {
 
     private void print() {
         if(selectionMade){
-            connection = new BluetoothThread(selectedDevice, localFile);
+            connection = new BluetoothThread(selectedDevice, localFile, false);
             connection.start();
             System.out.println("Printing...");
             Toast.makeText(getApplicationContext(), "Printing design...", Toast.LENGTH_LONG).show();
