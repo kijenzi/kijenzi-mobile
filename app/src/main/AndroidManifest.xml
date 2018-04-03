@@ -45,7 +45,8 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity android:name=".ParamsEditActivity" />
-        <activity android:name=".DeveloperActivity"></activity>
+        <activity android:name=".DeveloperActivity" />
+        <activity android:name=".PrintStatusActivity"></activity>
     </application>
 
 </manifest>

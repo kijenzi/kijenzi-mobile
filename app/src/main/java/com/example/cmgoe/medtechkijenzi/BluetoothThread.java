@@ -6,6 +6,9 @@ package com.example.cmgoe.medtechkijenzi;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.io.File;
@@ -29,11 +32,13 @@ public class BluetoothThread extends Thread implements Serializable {
     private boolean isDev = false;
     private InputStream in = null;
     private File localFile;
+    private Context mContext;
     private OutputStream out = null;
     private final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
     //private final UUID MY_UUID = UUID.fromString("8c372ea7-7a0f-4380-b133-17995eebff4b");
 
-    public BluetoothThread(BluetoothDevice device, File localFile, boolean theIsDev) {
+    public BluetoothThread(BluetoothDevice device, File localFile, boolean theIsDev, Context context) {
+        mContext = context;
         mmDevice = device;
         isDev = theIsDev;
         this.localFile = localFile;
@@ -111,18 +116,21 @@ public class BluetoothThread extends Thread implements Serializable {
     }
 
     public void sendFile(File fileToSend){
+        System.out.println("made it to sendFile");
         ArrayList<String> lines = FileToByteConverter.convertToLines(fileToSend);
         byte[] command = {};
         int i = 0;
 
         //inital print commands here
         //G0 Z0
-        command = "G28\n".getBytes(StandardCharsets.US_ASCII);
-        try{
-            out.write(command);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+//        command = "G28\n".getBytes(StandardCharsets.US_ASCII);
+//        try{
+//            out.write(command);
+//            System.out.println(in.read());
+//        } catch (Exception e){
+//
+//            e.printStackTrace();
+//        }
 
         for(String line : lines){
             System.out.println(line + " here is a line");
@@ -130,7 +138,16 @@ public class BluetoothThread extends Thread implements Serializable {
             try{
                 line = line + "\n";
                 out.write(line.getBytes(StandardCharsets.US_ASCII));
-                System.out.println(in.read() + " || response");
+                String read = Integer.toString(in.read());
+                int letter = Integer.parseInt(line.replaceAll("\\D+",""));
+                //responses.add(letter);
+                String currChar = Character.toString((char) letter);
+
+                Intent statusMessage = new Intent("StatusIntent");
+                statusMessage.putExtra("theCurrChar", currChar);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(statusMessage);
+
+                System.out.print(currChar);
                 out.flush();
             } catch (Exception e){
                 e.printStackTrace();

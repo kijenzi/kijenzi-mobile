@@ -61,7 +61,7 @@ public class DeveloperActivity extends AppCompatActivity {
     }
 
     private void sendCommand() {
-        connection = new BluetoothThread(selectedDevice, null, true);
+        connection = new BluetoothThread(selectedDevice, null, true, getApplicationContext());
         connection.setCommand(textInput.getText().toString());
         connection.start();
     }

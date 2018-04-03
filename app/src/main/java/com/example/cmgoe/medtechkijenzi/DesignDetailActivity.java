@@ -158,11 +158,16 @@ public class DesignDetailActivity extends AppCompatActivity {
 
     private void print() {
         if(selectionMade){
-            connection = new BluetoothThread(selectedDevice, localFile, false);
+            connection = new BluetoothThread(selectedDevice, localFile, false,getApplicationContext());
             connection.start();
             System.out.println("Printing...");
             Toast.makeText(getApplicationContext(), "Printing design...", Toast.LENGTH_LONG).show();
             //connection.sendFile(localFile); //eventually this will be used instead of immediately sending
+
+            Intent intent = new Intent(getApplicationContext(), PrintStatusActivity.class);
+            //intent.putExtra("btConnect", connection);
+            startActivity(intent);
+
         } else {
             Toast.makeText(getApplicationContext(), "You must select a Bluetooth device before printing!", Toast.LENGTH_LONG).show();
         }
